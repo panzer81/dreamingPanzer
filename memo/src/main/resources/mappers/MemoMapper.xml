@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.panzer.memo.service.impl.MemoMapper">
+ 
+   
+    <select id="selectMemo" resultType="com.panzer.memo.service.MemoVO">
+        SELECT MESSAGE, DATE_FORMAT(CRTDATE,'%Y-%m-%d %H:%i:%s') AS CRTDATE FROM MEMO 
+        -- WHERE DATE(CRTDATE) = DATE(now())
+        ORDER BY CRTDATE DESC
+    </select>
+    
+   
+    <insert id="insertMemo" parameterType="com.panzer.memo.service.MemoVO" >
+        INSERT INTO MEMO(MESSAGE, CRTDATE) values( #{message} , now() )
+    </insert>
+   
+ 
+</mapper>
